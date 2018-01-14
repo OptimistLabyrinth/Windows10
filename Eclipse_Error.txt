@@ -1,0 +1,60 @@
+
+1. While Debugging... 
+
+    Can't find a source file at "/cygdrive/d/YooKiseong/cppWorkspace/reviewC/src/reviewC.c" 
+    Locate the file or edit the source lookup path to include its location.
+
+* link : http://www.eclipse.org/forums/index.php/t/57027/
+
+My thanks to Christian for the answer. Here's the procedure to get things 
+working ...
+
+
+If you're working under Windows, have you set the required mappings?
+Maybe Eclipse couldn't find the Source because of the missing mapping to
+the (cygwin-)drive where your projects/workspaces are.
+
+When you start Cygwin, enter "mount" and look for the mapping you have:
+They may look like this:
+
+
+Admin@bs11-01xp ~
+$ mount
+D:\cygwin\bin on /usr/bin type system (binmode)
+D:\cygwin\lib on /usr/lib type system (binmode)
+D:\cygwin on / type system (binmode)
+c: on /cygdrive/c type system (binmode,noumount)
+d: on /cygdrive/d type system (binmode,noumount)
+e: on /cygdrive/e type system (binmode,noumount)
+j: on /cygdrive/j type system (binmode,noumount)
+n: on /cygdrive/n type system (binmode,noumount)
+u: on /cygdrive/u type system (binmode,noumount)
+w: on /cygdrive/w type system (binmode,noumount)
+x: on /cygdrive/x type system (binmode,noumount)
+y: on /cygdrive/y type system (binmode,noumount)
+z: on /cygdrive/z type system (binmode,noumount)
+
+
+
+My Projects ara all under J:\Projects, so my mapping needs to be present
+in Eclipse as:
+/cygdrive/j j:/
+
+
+Open Eclipse and then click
+- Windows => Preferences... => C/C++ => Debug =>Common Source Lookup
+Path
+- Add a new Path Mapping: click [Add] => Path Mapping => [OK]
+- Select the new Mapping => [Edith] => change Name of Mapping "Project
+Source" => [Add]
+- set "Compilation path" to the Source (Sample cygwin!) "/cygdrive/j"
+(without the quotes!)
+- set"Local file system path" tho "J:\" (without the quotes!)
+
+Now you are ready ti give it another try.... good luck !
+
+
+Regards
+Christian
+
+
